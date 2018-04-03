@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: mariadb:10.2
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: AppleSucks
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+  drupal:
+    depends_on:
+      - db
+    #build: .
+    image: d8:nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/app
+    #deploy:
+     # replicas: 2
+     # resources:
+     #   limits: 
+     #     cpus: "0.1"
+     #     memory: 50M
+     # restart_policy: 
+     #   condition: on-failure
+    restart: always
+volumes:
+  db_data:
+       external:
+         name: continousblog_db_data

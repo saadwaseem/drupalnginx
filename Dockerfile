@@ -15,7 +15,7 @@ RUN wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/down
 
 RUN rm -rf /var/www/html/*
 
-COPY nginx-drupal.conf /etc/nginx/conf.d/
+#COPY nginx-drupal.conf /etc/nginx/conf.d/
 #ADD ./app /app
-WORKDIR /app
+WORKDIR /code
 
